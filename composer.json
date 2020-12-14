@@ -1,0 +1,54 @@
+{
+  "name": "webarchitect609/composer-library-skeleton",
+  "description": "My composer library skeleton.",
+  "type": "library",
+  "license": "BSD-3-Clause",
+  "authors": [
+    {
+      "name": "Sergey Gripinskiy",
+      "email": "web-architect@mail.ru",
+      "role": "Creator"
+    }
+  ],
+  "require": {
+    "php": "^7.3"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "phpstan/phpstan": "^0.12",
+    "phpunit/phpunit": "^9.4",
+    "roave/security-advisories": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "WebArch\\Skeleton\\": "src/main"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "WebArch\\Skeleton\\Test\\": "src/test"
+    }
+  },
+  "scripts": {
+    "check:all": [
+      "@check:code-style",
+      "@check:analyse",
+      "@check:test",
+      "@check:security"
+    ],
+    "check:analyse": "vendor/bin/phpstan analyse --ansi --no-progress",
+    "check:code-style": "vendor/bin/php-cs-fixer fix --ansi --dry-run --diff",
+    "check:security": "@composer update --no-suggest --no-interaction --dry-run roave/security-advisories",
+    "check:test": "vendor/bin/phpunit --colors=always"
+  },
+  "scripts-descriptions": {
+    "check:all": "Perform all the checks at once: code-style, static code analysis, unit tests and security.",
+    "check:analyse": "Static code analysis via PHPStan",
+    "check:code-style": "Check the code style.",
+    "check:security": "Manual dependencies security check via roave/security-advisories.",
+    "check:test": "Run all unit tests."
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
